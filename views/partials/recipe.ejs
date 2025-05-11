@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/recipe.css">
+</head>
+<body>
+
+    <header>
+        <h1><%= recipe.RecipeName %></h1>
+    </header>
+
+    <main>
+        <!-- get the info from database-->
+        <p><strong>Protein:</strong> <%= recipe.Protein %></p>
+        <p><strong>Prep Time:</strong> <%= recipe.PrepTime %> mins</p>
+        <p><strong>Cook Time:</strong> <%= recipe.CookTime %> mins</p>
+        <p><strong>Servings:</strong> <%= recipe.Servings %></p>
+
+        <!-- display the ingredients-->
+        <h2>Ingredients:</h2>
+        <div class="ingredient-container">
+            <% ingredients.forEach(ingredient => { %>
+                <div class="hover-box">
+                    <span class="ingredient-name"><%= ingredient.IngredientName %></span>
+                    <div class="popup"><%= ingredient.Info %></div>
+                </div>
+            <% }); %>
+        </div>
+   </main>
+
+   <a href="/recipes">Back to Recipes</a>
+</body>
+</html>
