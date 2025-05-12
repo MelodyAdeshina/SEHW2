@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= recipe.name || "Recipe" %></title>
+    <link rel="stylesheet" href="/recipe.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main>
+        <h1><%= recipe.name %></h1>
+        <p><%= recipe.description %></p>
+        <p><strong>Protein Type:</strong> <%= recipe.protein_type %></p>
+        
+        <h3>Ingredients:</h3>
+        <ul>
+            <% recipe.ingredients.forEach(ingredient => { %>
+                <li>
+                    <span class="ingredient-name" title="<%= ingredient.hover_info %>"><%= ingredient.name %></span>
+                </li>
+            <% }); %>
+        </ul>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

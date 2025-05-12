@@ -2,37 +2,38 @@ var express = require('express');
 var router = express.Router();
 var connection = require('../Database/connection');
 
-router.get('/:id', function(req, res, next) {
-  const recipeId = req.params.id;
-
+// Fetch all recipes with their ingredients
+router.get('/', function(req, res, next) {
   const query = `
     SELECT r.id, r.name, r.description, r.protein_type, i.id AS ingredient_id, i.name AS ingredient_name, i.hover_info
     FROM recipes r
     JOIN recipe_ingredients ri ON r.id = ri.recipe_id
     JOIN ingredients i ON ri.ingredient_id = i.id
-    WHERE r.id = ?
   `;
 
-  connection.query(query, [recipeId], function(err, results) {
+  connection.query(query, function(err, results) {
     if (err) throw err;
-    if (!results.length) return res.status(404).render('error', { message: 'Recipe not found' });
 
-    const recipe = {
-      id: results[0].id,
-      name: results[0].name,
-      description: results[0].description,
-      protein_type: results[0].protein_type,
-      ingredients: []
-    };
-
+    const recipes = [];
     results.forEach(row => {
+      let recipe = recipes.find(r => r.id === row.id);
+      if (!recipe) {
+        recipe = {
+          id: row.id,
+          name: row.name,
+          description: row.description,
+          protein_type: row.protein_type,
+          ingredients: []
+        };
+        recipes.push(recipe);
+      }
       recipe.ingredients.push({
         name: row.ingredient_name,
         hover_info: row.hover_info
       });
     });
 
-    res.render('recipe', { recipe });
+    res.render('recipes', { recipes });
   });
 });
 
