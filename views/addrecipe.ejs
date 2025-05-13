@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>New Recipe</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <style>
+    main {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button {
+      padding: 12px 20px;
+      background-color: purple;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    button:hover {
+      background-color: darkviolet;
+      transform: scale(1.05);
+    }
+
+    .home-link {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      text-decoration: none;
+      color: purple;
+      font-weight: bold;
+    }
+
+    .home-link:hover {
+      color: darkviolet;
+    }
+  </style>
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <main>
+    <h1>New Recipe</h1>
+    <form action="/addrecipe" method="POST">
+      <div>
+        <label for="name">Recipe Name:</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+
+      <div>
+        <label for="protein">Recipe Type (Protein):</label>
+        <select id="protein" name="protein_type" required>
+          <% proteinTypes.forEach(type => { %>
+            <option value="<%= type %>"><%= type %></option>
+          <% }) %>
+        </select>
+      </div>
+
+      <div>
+        <label for="ingredients">Ingredients:</label>
+        <select id="ingredients" name="ingredient_ids" multiple size="5">
+          <% ingredients.forEach(ingredient => { %>
+            <option value="<%= ingredient.id %>"><%= ingredient.name %></option>
+          <% }) %>
+        </select>
+      </div>
+
+      <div>
+        <label for="new_ingredient">Another Ingredient:</label>
+        <input type="text" id="new_ingredient" name="new_ingredient" placeholder="Optional new ingredient" />
+      </div>
+
+      <div>
+        <label for="instructions">Instructions:</label>
+        <textarea id="instructions" name="instructions" required></textarea>
+      </div>
+
+      <button type="submit">Submit Recipe</button>
+    </form>
+
+    <a class="home-link" href="/">← Back to Home</a>
+  </main>
+</body>
+</html>

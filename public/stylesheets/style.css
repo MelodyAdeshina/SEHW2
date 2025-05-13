@@ -1,8 +1,145 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* Gradient Header */
+.main-header {
+  background: linear-gradient(to right, #6C3483, #2E86C1);
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 2rem;
 }
 
-a {
-  color: #6c919f;
+/* Subheading Nav Bar */
+.subheader {
+  background-color: black;
+  padding: 1rem;
+  text-align: center;
 }
+
+.subheader ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.subheader a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.subheader a:hover {
+  color: #ffccff;
+}
+
+/* Main Content */
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.left-column, .right-column {
+  width: 48%;
+}
+
+/* Button */
+.button-container {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.button {
+  background-color: #6C3483;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.button:hover {
+  background-color: #884EA0;
+}
+
+/* Footer */
+footer {
+  background-color: #f0f0f0;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.recipe-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.protein-box {
+  border: 2px solid black;
+  padding: 1rem;
+  min-width: 200px;
+  text-align: center;
+  background-color: white;
+}
+.protein-box h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+
+.recipe-item {
+  margin: 0.5rem 0;
+}
+
+.recipe-item a {
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+}
+
+.recipe-item a:hover {
+  color: #6C3483;
+}
+
+.recipe-detail {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.instructions, .ingredients {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  width: 48%;
+  background-color: white;
+}
+
+.ingredient {
+  position: relative;
+  cursor: help;
+}
+
+.ingredient:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+  background-color: #f9f9f9;
+}
+
+
+
+
+
+

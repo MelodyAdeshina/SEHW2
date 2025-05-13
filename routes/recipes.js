@@ -14,29 +14,43 @@ router.get('/', function(req, res, next) {
   connection.query(query, function(err, results) {
     if (err) throw err;
 
-    const recipes = [];
+    // Step 1: Flatten into recipe list
+    const recipesMap = new Map();
+
     results.forEach(row => {
-      let recipe = recipes.find(r => r.id === row.id);
-      if (!recipe) {
-        recipe = {
+      if (!recipesMap.has(row.id)) {
+        recipesMap.set(row.id, {
           id: row.id,
           name: row.name,
           description: row.description,
           protein_type: row.protein_type,
           ingredients: []
-        };
-        recipes.push(recipe);
+        });
       }
-      recipe.ingredients.push({
+
+      recipesMap.get(row.id).ingredients.push({
         name: row.ingredient_name,
         hover_info: row.hover_info
       });
     });
 
-    res.render('recipes', { recipes });
+    // Step 2: Group by protein_type
+    const groupedRecipes = {};
+
+    Array.from(recipesMap.values()).forEach(recipe => {
+      const protein = recipe.protein_type || 'Other';
+      if (!groupedRecipes[protein]) {
+        groupedRecipes[protein] = [];
+      }
+      groupedRecipes[protein].push(recipe);
+    });
+
+    // Step 3: Render with grouped recipes
+    res.render('recipes', { groupedRecipes });
   });
 });
 
 module.exports = router;
+
 
 

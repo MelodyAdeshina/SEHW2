@@ -1,28 +1,54 @@
-<%- include('partials/header') %>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recipe List</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
 
-<main>
-  <h1>Recipes</h1>
-  <p>Here are some of my favorite recipes!</p>
-  
-  <% recipes.forEach(recipe => { %>
-    <div class="recipe">
-      <h2><%= recipe.name %></h2>
-      <p><%= recipe.description %></p>
-      <p><strong>Protein Type:</strong> <%= recipe.protein_type %></p>
-      
-      <h3>Ingredients:</h3>
-      <ul>
-        <% recipe.ingredients.forEach(ingredient => { %>
-          <li>
-            <span class="ingredient-name" title="<%= ingredient.hover_info %>"><%= ingredient.name %></span>
-          </li>
-        <% }); %>
-      </ul>
-      
-      <a href="/recipes/<%= recipe.id %>" class="btn">View Recipe</a>
+<body>
+
+  <%- include('partials/header') %>
+
+  <main>
+    <div class="recipe-container">
+      <% Object.keys(groupedRecipes).forEach(protein => { %>
+        <div class="protein-box">
+          <h2><%= protein %></h2>
+          <% groupedRecipes[protein].forEach(recipe => { %>
+            <div class="recipe-item">
+              <a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a>
+            </div>
+          <% }); %>
+        </div>
+      <% }); %>
     </div>
-  <% }); %>
-</main>
 
-<%- include('partials/footer') %>
+    <!-- Back to Home Button -->
+    <button class="back-to-home-btn" onclick="window.location.href='/'">Back to Home</button>
+  </main>
 
+  <style>
+    /* Center the button and style it */
+    .back-to-home-btn {
+      display: block;
+      width: 200px;
+      margin: 20px auto; /* Centers the button horizontally */
+      padding: 10px;
+      background-color: purple; /* Button color */
+      color: white; /* Text color */
+      font-size: 16px;
+      text-align: center;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    /* Hover effect */
+    .back-to-home-btn:hover {
+      background-color: darkviolet;
+      transform: scale(1.05); /* Slightly enlarge the button on hover */
+    }
+  </style>
+
+</body>

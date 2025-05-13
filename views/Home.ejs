@@ -1,21 +1,49 @@
-<%- include('partials/header') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Melody's Cookbook</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
 
-<main>
-  <h1>Welcome to My Recipe World!</h1>
-  <p>Hi! I'm Melody, and cooking has always been a huge part of my life. Whether it's comfort food or something adventurous, I find joy in exploring new flavors and sharing them with others.</p>
+  <header class="main-header">
+    <h1>Melody's Cookbook</h1>
+  </header>
 
-  <h2>My Favorite Dish</h2>
-  <p>One of my all-time favorite dishes is <strong>Ackee and Saltfish</strong>. Reminds me of Canada, and was a comfort food for me when I was younger.</p>
+  <nav class="subheader">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/recipes">Recipes</a></li>
+      <li><a href="/add-recipe">Add Recipe</a></li>
+    </ul>
+  </nav>
 
-  <img src="/images/ackee.jpg" alt="Ackee and Saltfish" style="width: 60%; max-width: 500px; border-radius: 8px; margin: 1rem 0;">
+  <main>
+    <section class="content">
+      <div class="left-column">
+        <h2>About Me</h2>
+        <div class="about-me-box">
+          <p>
+            Hi, I’m Melody! I’ve always loved the creativity and warmth that comes with cooking. This site is my collection of recipes, memories, and flavors that bring me joy. From classic comfort foods to experimental dishes, every recipe here has a story. Enjoy exploring and maybe find a new favorite of your own!
+          </p>
+        </div>
+      </div>
+      <div class="right-column">
+        <p><strong>Welcome!</strong></p>
+        <p>This site is a collection of recipes I love to eat/cook. Whether you're new or experienced, I hope you find something tasty here!</p>
+      </div>
+    </section>
 
-  <p>My goal with this site is to share some of my favorite recipes categorized by protein type. I hope you find inspiration, whether you're craving something hearty like meatballs or something light like tuna onigiri!</p>
+    <div class="button-container">
+      <a href="/recipes" class="button">Explore Recipes</a>
+    </div>
+  </main>
 
-  <a href="/recipes" class="btn">View Recipes</a>
-</main>
+  <footer>
+    <p>This site was created by Melody Adeshina | Resources: ChatGPT, Google</p>
+  </footer>
 
-<%- include('partials/footer') %>
-
-
-
-
+</body>
+</html>
